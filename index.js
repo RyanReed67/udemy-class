@@ -1,17 +1,20 @@
 import express from "express";
+import bodyParser from "body-parser";
+
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
-  const data = {
-    title: "EJS Tags",
-    seconds: new Date().getSeconds(),
-    items: ["apple", "banana", "cherry"],
-    htmlContent: "<strong>This is some strong text</strong>",
-  };
-  res.render("index.ejs", data);
+  res.render("solution.ejs");
+});
+
+app.post("/submit", (req, res) => {
+  const numLetters = req.body["fName"].length + req.body["lName"].length;
+  res.render("solution.ejs", { numberOfLetters: numLetters });
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });

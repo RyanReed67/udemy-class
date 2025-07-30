@@ -4,31 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EJS Tags</title>
+  <title>Name Letters</title>
 </head>
 
 <body>
-  <h1>
-     <%=title %>
-  </h1>
-  <p>Current second:
-     <%=seconds %>
-  </p>
-  <% if (seconds % 2===0) { %>
-  <ul>
-     <% items.forEach((fruit) => { %>
-    <li>
-      <%=fruit %>
-    </li>
-    <%}) %>
-  </ul>
- <%} else { %>
-  <p>No items to display</p>
-  <% } %>
-  <p>
-    <%- htmlContent %>
-  </p>
-  <%- include("footer.ejs") %>
+  <!-- Write your code here -->
+   <% if (locals.numberOfLetters) { %>
+    <h1>There are <%= numberOfLetters %> letters in your name.</h1>
+    <% } else { %>
+      <h1>Enter you name below</h1>
+      <% } %>
+  <form action="/submit" method="POST">
+    <input type="text" name="fName" placeholder="First name">
+    <input type="text" name="lName" placeholder="Last name">
+    <input type="submit" value="OK">
+  </form>
 </body>
 
 </html>
